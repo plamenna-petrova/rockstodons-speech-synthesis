@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # rockstodons-speech-synthesis
 
 ## Project setup
@@ -23,6 +22,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
-## Generic Template with Speech Synthesis options
->>>>>>> 25df4c048984ae4d3f766788f8d64f0d46ee197f
