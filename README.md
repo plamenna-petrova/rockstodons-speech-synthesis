@@ -1,4 +1,4 @@
-## Generic Template with Speech Synthesis options
+## Generic Template with Speech Synthesis options, rendered in Vue.js
 
 ![Navigation Bar and Masthead Header](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(118).png?raw=true)
 
@@ -6,7 +6,7 @@
 
 ![Footer with Speech Synthesis Menu](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(122).png)
 
-## Setup Speech Synthesis 
+## Set up Speech Synthesis 
 
 ```javascript
 
@@ -90,7 +90,7 @@ stopTextToSpeechConversion() {
     }
   })
 ```
-- Subsription
+- Subscription
 ```javascript
   eventBus.$on("speak-text", this.convertTextToSpeech);
   eventBus.$on("speak-hint", this.convertTextToSpeech);
