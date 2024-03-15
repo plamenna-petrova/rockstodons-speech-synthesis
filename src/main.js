@@ -20,6 +20,7 @@ import enTranslations from './i18n/en'
 import bgTranslations from './i18n/bg'
 import deTranslations from './i18n/de'
 import frTranslations from './i18n/fr'
+import esTranslations from './i18n/es'
 
 library.add(fab)
 library.add(faSearch)
@@ -38,7 +39,8 @@ const messages = {
   en: enTranslations,
   bg: bgTranslations,
   de: deTranslations,
-  fr: frTranslations
+  fr: frTranslations,
+  es: esTranslations
 }
 
 const i18n = new VueI18n({
