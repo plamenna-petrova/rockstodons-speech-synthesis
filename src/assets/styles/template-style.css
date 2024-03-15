@@ -431,6 +431,10 @@ footer a {
     padding: 50px !important;
 }
 
+.footer-section ul {
+    padding-left: 0px;
+}
+
 /* media queries */
 
 @media screen and (max-width: 1200px) {
@@ -488,5 +492,15 @@ footer a {
 
     .new-releases-container {
       padding: 20px !important;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .container-fluid.navigation-container {
+        justify-content: center !important;
+    }
+
+    .navbar-brand {
+        margin-left: 10px;
     }
 }

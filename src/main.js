@@ -15,6 +15,11 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import vuetify from './plugins/vuetify'
+import VueI18n from 'vue-i18n'
+import enTranslations from './i18n/en'
+import bgTranslations from './i18n/bg'
+import deTranslations from './i18n/de'
+import frTranslations from './i18n/fr'
 
 library.add(fab)
 library.add(faSearch)
@@ -26,6 +31,21 @@ library.add(faEnvelopeOpen)
 library.add(faEllipsis)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.use(VueI18n);
+
+const messages = {
+  en: enTranslations,
+  bg: bgTranslations,
+  de: deTranslations,
+  fr: frTranslations
+}
+
+const i18n = new VueI18n({
+  messages
+})
+
+i18n.locale = localStorage.getItem("currentLocale") || 'en';
 
 const eventBus = new Vue()
 
@@ -47,7 +67,8 @@ Vue.config.productionTip = false
 
 new Vue({
   vuetify,
-  render: h => h(App)
+  render: h => h(App),
+  i18n
 }).$mount('#app')
 
 export { eventBus };

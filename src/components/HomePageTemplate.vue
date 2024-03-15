@@ -11,45 +11,72 @@
         color="primary"
         dark
         @click.stop="dialog = true"
+        @mouseover="speakHint(`${$t('settings.details')}`)"
+        @mouseout="stopSpeaking()"
       >
         <font-awesome-icon icon="ellipsis" />
       </v-btn>
 
       <v-dialog v-model="dialog" max-width="450">
         <v-card>
-          <v-card-title class="text-h5">
-            Define Speech Synthesis Options
+          <v-card-title
+            class="text-h5"
+            @mouseover="speakText($event)"
+            @mouseout="stopSpeaking()"
+          >
+            {{ $t("settings.speechSynthesisOptions") }}
           </v-card-title>
 
           <v-card-text>
             <div class="speech-synthesis-form-container">
               <form class="speech-synthesis-form">
-                <h4>Select Voices and Speed Rates</h4>
+                <h4 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
+                  {{ $t("settings.voicesAndSpeedRatesSelection") }}
+                </h4>
 
                 <div class="form-group" v-if="voiceList.length">
-                  <label for="voices">Select a voice</label>
-                  <select
-                    class="form-control"
-                    id="voices"
-                    v-model="selectedVoice"
+                  <label
+                    for="voices"
+                    @mouseover="speakText($event)"
+                    @mouseout="stopSpeaking()"
+                    >{{ $t("settings.voiceSelection") }}</label
                   >
-                    <option
-                      v-for="(voice, index) in voiceList"
-                      :data-lang="voice.lang"
-                      :key="index"
-                      :value="index"
+                  <div
+                    @mouseover="
+                      speakHint(`${voiceList[selectedVoice].name} ${voiceList[selectedVoice].lang}`)
+                    "
+                    @mouseout="stopSpeaking()"
+                  >
+                    <select
+                      class="form-control"
+                      id="voices"
+                      v-model="selectedVoice"
                     >
-                      {{ voice.name }} ({{ voice.lang }})
-                    </option>
-                  </select>
+                      <option
+                        v-for="(voice, index) in voiceList"
+                        :data-lang="voice.lang"
+                        :key="index"
+                        :value="index"
+                      >
+                        {{ voice.name }} ({{ voice.lang }})
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-group" v-if="voiceList.length">
-                  <label for="voices">Select speed rate</label>
+                  <label
+                    for="voices"
+                    @mouseover="speakText($event)"
+                    @mouseout="stopSpeaking()"
+                    >{{ $t("settings.speedRateSelection") }}</label
+                  >
                   <select
                     class="form-control"
                     id="rates"
                     v-model="selectedRate"
+                    @mouseover="speakHint(`${rates[selectedRate]}`)"
+                    @mouseout="stopSpeaking()"
                   >
                     <option
                       v-for="(rate, index) in rates"
@@ -70,15 +97,19 @@
                     type="button"
                     class="btn btn-success grouped-button mr-3"
                     @click="[saveSpeechSynthesisSettings(), (dialog = false)]"
+                    @mouseover="speakText($event)"
+                    @mouseout="stopSpeaking()"
                   >
-                    Save
+                    {{ $t("settings.save") }}
                   </button>
                   <button
                     type="button"
                     class="btn btn-success grouped-button"
                     @click="[cancelSpeechSynthesisSettings(), (dialog = false)]"
+                    @mouseover="speakText($event)"
+                    @mouseout="stopSpeaking()"
                   >
-                    Cancel
+                    {{ $t("settings.cancel") }}
                   </button>
                 </div>
               </form>
@@ -87,8 +118,14 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="dialog = false">
-              Close
+            <v-btn
+              color="green darken-1"
+              text
+              @click="dialog = false"
+              @mouseover="speakText($event)"
+              @mouseout="stopSpeaking()"
+            >
+              {{ $t("settings.close") }}
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -129,6 +166,7 @@ export default {
   mounted() {
     this.setUpResponsiveNavbar();
     this.setUpSpeechSynthesisOptions();
+    eventBus.$on("setup-speech-synthesis-options", this.setUpSpeechSynthesisOptions);
     eventBus.$on("speak-text", this.convertTextToSpeech);
     eventBus.$on("speak-hint", this.convertTextToSpeech);
     eventBus.$on("stop-speaking", this.stopTextToSpeechConversion);
@@ -227,18 +265,26 @@ export default {
         }
       });
     },
-    setUpSpeechSynthesisOptions() {
+    setUpSpeechSynthesisOptions(currentLocale) {
+      if (!currentLocale) {
+        currentLocale = localStorage.getItem("currentLocale") || 'en';
+      }
+
       this.voiceList = this.synth.getVoices();
+      this.voiceList = [...this.voiceList.filter(v => v.lang.split('-')[0] === currentLocale)];
+
       this.synth.onvoiceschanged = () => {
-        this.voiceList = this.synth.getVoices();
-        this.voiceList.splice(3, 1);
-        this.voiceList = this.voiceList.slice(0, 3);
+        this.voiceList = this.synth.getVoices();       
+        this.voiceList = [...this.voiceList.filter(v => v.lang.split('-')[0] === currentLocale)];
+        this.selectedVoice = this.voiceList.length > JSON.parse(localStorage.getItem("selectedVoice")) + 1
+          ? JSON.parse(localStorage.getItem("selectedVoice")) : 0;
+        this.selectedRate = JSON.parse(localStorage.getItem("selectedRate")) || 3;
+        this.settingsSaved = localStorage.getItem("settingsStatus");
       };
-      this.selectedVoice =
-        JSON.parse(localStorage.getItem("selectedVoice")) || 0;
+
+      this.selectedVoice = this.voiceList.length > JSON.parse(localStorage.getItem("selectedVoice")) + 1
+        ? JSON.parse(localStorage.getItem("selectedVoice")) : 0;
       this.selectedRate = JSON.parse(localStorage.getItem("selectedRate")) || 3;
-      this.settingsSaved = localStorage.getItem("settingsStatus");
-      console.log(this.settingsSaved);
     },
     convertTextToSpeech(innerText) {
       if (this.settingsSaved) {
@@ -270,7 +316,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 @import "../assets/styles/template-style.css";

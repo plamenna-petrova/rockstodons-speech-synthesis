@@ -8,11 +8,11 @@
               <font-awesome-icon icon="location-dot" />
               <div class="cta-text">
                 <h4 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Find us
+                  {{ $t("footer.findUs") }}
                 </h4>
-                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()"
-                  >Veliko Tarnovo, Bulgaria</span
-                >
+                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()">
+                  {{ $t("footer.location") }}
+                </span>
               </div>
             </div>
           </div>
@@ -21,11 +21,11 @@
               <font-awesome-icon icon="phone" />
               <div class="cta-text">
                 <h4 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Call us
+                  {{ $t("footer.callUs") }}
                 </h4>
-                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()"
-                  >9876543210 0</span
-                >
+                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()">
+                  {{ $t("footer.phoneNumber") }}
+                </span>
               </div>
             </div>
           </div>
@@ -34,11 +34,11 @@
               <font-awesome-icon icon="envelope-open" />
               <div class="cta-text">
                 <h4 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Mail us
+                  {{ $t("footer.mailUs") }}
                 </h4>
-                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()"
-                  >mail@rockstodons.com</span
-                >
+                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()">
+                  {{ $t("footer.emailAddress") }}
+                </span>
               </div>
             </div>
           </div>
@@ -54,36 +54,34 @@
                     src="../assets/images/rockstodons-logo-removebg-preview.png"
                     class="img-fluid"
                     alt="logo"
-                    @mouseover="speakHint('Rockstodons Logo')"
+                    @mouseover="speakHint(`{${$t('footer.logo')}}`)"
                     @mouseout="stopSpeaking()"
                 /></a>
               </div>
               <div class="footer-text">
                 <p @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed
-                  do eiusmod tempor incididuntut consec tetur adipisicing
-                  elit,Lorem ipsum dolor sit amet.
+                  {{ $t("footer.additionalInfo") }}
                 </p>
               </div>
               <div class="footer-social-icon mb-3">
-                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()"
-                  >Follow us</span
-                >
+                <span @mouseover="speakText($event)" @mouseout="stopSpeaking()">
+                  {{ $t("footer.followUs") }}
+                </span>
                 <a
                   href="#"
-                  @mouseover="speakHint('Facebook')"
+                  @mouseover="speakHint(`{${$t('footer.facebookIcon')}}`)"
                   @mouseout="stopSpeaking()"
                   ><font-awesome-icon icon="fa-brands fa-facebook"
                 /></a>
                 <a
                   href="#"
-                  @mouseover="speakHint('Twitter')"
+                  @mouseover="speakHint(`{${$t('footer.twitter')}}`)"
                   @mouseout="stopSpeaking()"
                   ><font-awesome-icon icon="fa-brands fa-twitter"
                 /></a>
                 <a
                   href="#"
-                  @mouseover="speakHint('Instagram')"
+                  @mouseover="speakHint(`{${$t('footer.instagram')}}`)"
                   @mouseout="stopSpeaking()"
                   ><font-awesome-icon icon="fa-brands fa-instagram"
                 /></a>
@@ -94,7 +92,7 @@
             <div class="footer-widget">
               <div class="footer-widget-heading">
                 <h3 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Useful Links
+                  {{ $t("footer.usefulLinks") }}
                 </h3>
               </div>
               <ul>
@@ -103,80 +101,90 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Home</a
                   >
+                    {{ $t("footer.links.home") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >About</a
                   >
+                    {{ $t("footer.links.about") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Services</a
                   >
+                    {{ $t("footer.links.services") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Portfolio</a
                   >
+                    {{ $t("footer.links.portfolio") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Contact</a
                   >
+                    {{ $t("footer.links.contact") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >About us</a
                   >
+                    {{ $t("footer.links.aboutUs") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Our Services</a
                   >
+                    {{ $t("footer.links.ourServices") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Expert Team</a
                   >
+                    {{ $t("footer.links.expertTeam") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Contact us</a
                   >
+                    {{ $t("footer.links.contactUs") }}
+                  </a>
                 </li>
                 <li>
                   <a
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Latest News</a
                   >
+                    {{ $t("footer.links.latestNews") }}
+                  </a>
                 </li>
               </ul>
             </div>
@@ -185,27 +193,26 @@
             <div class="footer-widget">
               <div class="footer-widget-heading">
                 <h3 @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Subscribe
+                  {{ $t("footer.subscribe") }}
                 </h3>
               </div>
               <div class="footer-text mb-25">
                 <p @mouseover="speakText($event)" @mouseout="stopSpeaking()">
-                  Don’t miss to subscribe to our new feeds, kindly fill the form
-                  below.
+                  {{ $t("footer.subscriptionMessage") }}
                 </p>
               </div>
               <div class="subscribe-form">
                 <form action="#">
                   <input
                     type="text"
-                    placeholder="Email Address"
-                    @mouseover="speakHint('Email Address')"
+                    placeholder="Email"
+                    @mouseover="speakHint(`{${$t('footer.emailAddressPlaceholder')}}`)"
                     @mouseout="stopSpeaking()"
                   />
                   <button>
                     <font-awesome-icon
                       icon="fa-brands fa-telegram"
-                      @mouseover="speakHint('Send Message')"
+                      @mouseover="speakHint(`{${$t('footer.sendMessage')}}`)"
                       @mouseout="stopSpeaking()"
                     />
                   </button>
@@ -223,7 +230,12 @@
             <div class="copyright-text">
               <p>
                 <a @mouseover="speakText($event)" @mouseout="stopSpeaking()"
-                  >Copyright &copy; 2022, All Right Reserved</a
+                  >{{ $t("footer.copyrightDetails") }} &copy;
+                  {{
+                    $t("footer.copyrightYearInfo", {
+                      currentYear: new Date().getFullYear(),
+                    })
+                  }}</a
                 >
               </p>
             </div>
@@ -236,7 +248,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Home</a
+                    >{{ $t('footer.sublinks.home') }}</a
                   >
                 </li>
                 <li>
@@ -244,7 +256,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Terms</a
+                    >{{ $t('footer.sublinks.terms') }}</a
                   >
                 </li>
                 <li>
@@ -252,7 +264,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Privacy</a
+                    >{{ $t('footer.sublinks.privacy') }}</a
                   >
                 </li>
                 <li>
@@ -260,7 +272,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Policy</a
+                    >{{ $t('footer.sublinks.policy') }}</a
                   >
                 </li>
                 <li>
@@ -268,7 +280,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >Contact</a
+                    >{{ $t('footer.sublinks.contact') }}</a
                   >
                 </li>
               </ul>
