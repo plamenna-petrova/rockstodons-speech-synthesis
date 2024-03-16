@@ -18,9 +18,6 @@ import vuetify from './plugins/vuetify'
 import VueI18n from 'vue-i18n'
 import enTranslations from './i18n/en'
 import bgTranslations from './i18n/bg'
-import deTranslations from './i18n/de'
-import frTranslations from './i18n/fr'
-import esTranslations from './i18n/es'
 
 library.add(fab)
 library.add(faSearch)
@@ -37,10 +34,7 @@ Vue.use(VueI18n);
 
 const messages = {
   en: enTranslations,
-  bg: bgTranslations,
-  de: deTranslations,
-  fr: frTranslations,
-  es: esTranslations
+  bg: bgTranslations
 }
 
 const i18n = new VueI18n({

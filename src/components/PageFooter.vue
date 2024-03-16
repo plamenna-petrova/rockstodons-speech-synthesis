@@ -206,7 +206,9 @@
                   <input
                     type="text"
                     placeholder="Email"
-                    @mouseover="speakHint(`{${$t('footer.emailAddressPlaceholder')}}`)"
+                    @mouseover="
+                      speakHint(`{${$t('footer.emailAddressPlaceholder')}}`)
+                    "
                     @mouseout="stopSpeaking()"
                   />
                   <button>
@@ -248,7 +250,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >{{ $t('footer.sublinks.home') }}</a
+                    >{{ $t("footer.sublinks.home") }}</a
                   >
                 </li>
                 <li>
@@ -256,7 +258,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >{{ $t('footer.sublinks.terms') }}</a
+                    >{{ $t("footer.sublinks.terms") }}</a
                   >
                 </li>
                 <li>
@@ -264,7 +266,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >{{ $t('footer.sublinks.privacy') }}</a
+                    >{{ $t("footer.sublinks.privacy") }}</a
                   >
                 </li>
                 <li>
@@ -272,7 +274,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >{{ $t('footer.sublinks.policy') }}</a
+                    >{{ $t("footer.sublinks.policy") }}</a
                   >
                 </li>
                 <li>
@@ -280,7 +282,7 @@
                     href="#"
                     @mouseover="speakText($event)"
                     @mouseout="stopSpeaking()"
-                    >{{ $t('footer.sublinks.contact') }}</a
+                    >{{ $t("footer.sublinks.contact") }}</a
                   >
                 </li>
               </ul>
@@ -291,3 +293,9 @@
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  name: "PageFooter",
+};
+</script>

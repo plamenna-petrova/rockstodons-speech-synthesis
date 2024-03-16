@@ -137,18 +137,6 @@ export default {
         {
           code: "bg",
           text: "BG",
-        },
-        {
-          code: "de",
-          text: "DE",
-        },
-        {
-          code: "fr",
-          text: "FR"
-        },
-        {
-          code: "es",
-          text: "ES"
         }
       ],
     };
