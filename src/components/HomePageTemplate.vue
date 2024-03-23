@@ -43,7 +43,9 @@
                   >
                   <div
                     @mouseover="
-                      speakHint(`${voiceList[selectedVoice].name} ${voiceList[selectedVoice].lang}`)
+                      speakHint(
+                        `${voiceList[selectedVoice].name} ${voiceList[selectedVoice].lang}`
+                      )
                     "
                     @mouseout="stopSpeaking()"
                   >
@@ -148,13 +150,13 @@ export default {
     return {
       name: "",
       selectedVoice: 0,
-      synth: window.speechSynthesis,
+      speechSynthesis: window.speechSynthesis,
       voiceList: [],
       textToSpeech: new window.SpeechSynthesisUtterance(),
       rates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
       selectedRate: 3,
       dialog: false,
-      settingsSaved: false,
+      areSettingsSaved: false,
     };
   },
   components: {
@@ -166,7 +168,10 @@ export default {
   mounted() {
     this.setUpResponsiveNavbar();
     this.setUpSpeechSynthesisOptions();
-    eventBus.$on("setup-speech-synthesis-options", this.setUpSpeechSynthesisOptions);
+    eventBus.$on(
+      "setup-speech-synthesis-options",
+      this.setUpSpeechSynthesisOptions
+    );
     eventBus.$on("speak-text", this.convertTextToSpeech);
     eventBus.$on("speak-hint", this.convertTextToSpeech);
     eventBus.$on("stop-speaking", this.stopTextToSpeechConversion);
@@ -174,6 +179,7 @@ export default {
   methods: {
     setUpResponsiveNavbar() {
       let clicksCounter = 0;
+
       let navbarToggler = document.querySelector(".navbar-toggler");
       navbarToggler.style.border = "transparent";
       let navbarExpandLg = document.querySelector(".navbar.navbar-expand-lg");
@@ -195,123 +201,158 @@ export default {
       let navbarTogglerTopBar = document.querySelector(
         ".navbar-toggler .top-bar"
       );
+      let rightElementsContainer = document.querySelector(
+        ".right-elements-container"
+      );
       let rightElements = document.querySelectorAll(".right-element");
       let navbarTogglerBottomBar = document.querySelector(
         ".navbar-toggler .bottom-bar"
       );
+      let localeChanger = document.querySelector(".locale-changer");
+
       navbarToggler.addEventListener("click", function () {
         clicksCounter++;
+
         if (clicksCounter % 2 !== 1) {
           this.clicksCounterStatus = "positive";
           navbarExpandLg.style.height = "initial";
-          body.style.overflow = "initial";
+          body.style.position = "initial";
           navbarToggler.style.position = "relative";
-          if (navbarBrand.classList.contains("d-none")) {
-            navbarBrand.classList.remove("d-none");
-          }
-          navbarBrand.classList.add("d-block");
-          navbarExpandLgContainerFluid.classList.remove(
-            "justify-content-center"
-          );
+          navbarToggler.style.left = 0;
+
+          navbarBrand.style.marginLeft = 0 + "px";
+
           navbarSupportedContent.style.display = "none";
           mainNavigation.classList.remove("text-center");
-          mainNavigationListItems.forEach((li) => {
-            li.style.padding = "0px 8px";
+
+          mainNavigationListItems.forEach((mainNavigationListItem) => {
+            mainNavigationListItem.style.padding = "0px 8px";
           });
-          mainNavigationListItemsLinks.forEach((a) => {
-            a.style.fontSize = "14px";
+
+          mainNavigationListItemsLinks.forEach((mainNavigationListItemLink) => {
+            mainNavigationListItemLink.style.fontSize = "14px";
           });
-          rightElements.forEach((re) => {
-            if (re.classList.contains("d-none")) {
-              re.classList.remove("d-none");
-            }
-            re.classList.add("d-block");
+
+          rightElementsContainer.style.flexDirection = "row";
+          rightElementsContainer.style.textAlign = "initial";
+
+          rightElements.forEach((rightElement) => {
+            rightElement.style.textAlign = "initial";
+            rightElement.style.padding = "0px 15px";
+            rightElement.style.marginLeft = 0 + "px";
           });
+
           navbarTogglerTopBar.style.top = "0";
           navbarTogglerBottomBar.style.top = "20px";
           navbarToggler.style.border = "none";
+
+          localeChanger.style.marginLeft = 0 + "px";
         } else {
           this.clicksCounterStatus = "negative";
+
           navbarExpandLg.style.height = "100vh";
-          body.style.overflow = "hidden";
+          body.style.position = "fixed";
           navbarToggler.style.position = "absolute";
           navbarToggler.style.top = "8%";
-          if (navbarBrand.classList.contains("d-block")) {
-            navbarBrand.classList.remove("d-block");
-          }
-          navbarBrand.classList.add("d-none");
+          navbarToggler.style.left = 50 + "%";
+
+          navbarBrand.style.marginLeft = 18 + "px";
+
           navbarExpandLgContainerFluid.classList.add("justify-content-center");
           navbarSupportedContent.style.display = "block";
           navbarSupportedContent.style.textAlign = "center";
           mainNavigation.classList.remove("text-center");
-          mainNavigationListItems.forEach((li) => {
-            li.style.paddingTop = "10px";
-            li.style.paddingBottom = "10px";
+
+          mainNavigationListItems.forEach((mainNavigationListItem) => {
+            mainNavigationListItem.style.paddingTop = "10px";
+            mainNavigationListItem.style.paddingBottom = "10px";
           });
-          mainNavigationListItemsLinks.forEach((a) => {
-            a.style.fontSize = "14px";
+
+          mainNavigationListItemsLinks.forEach((mainNavigationListItemLink) => {
+            mainNavigationListItemLink.style.fontSize = "14px";
           });
-          rightElements.forEach((re) => {
-            if (re.classList.contains("d-block")) {
-              re.classList.remove("d-block");
-            }
-            re.classList.add("d-none");
+
+          rightElementsContainer.style.flexDirection = "column";
+          rightElementsContainer.style.textAlign = "center";
+
+          rightElements.forEach((rightElement) => {
+            rightElement.style.textAlign = "center";
+            rightElement.style.padding = "10px 0px";
+            rightElement.style.marginLeft = 28 + "px";
           });
+
           navbarTogglerTopBar.style.top = "10px";
           navbarTogglerBottomBar.style.top = "10px";
           navbarToggler.style.padding = "11px";
           navbarToggler.style.border = "2px" + " " + "solid";
           navbarToggler.style.borderRadius = "17px";
+
+          localeChanger.style.marginLeft = 28 + "px";
         }
       });
     },
     setUpSpeechSynthesisOptions(currentLocale) {
       if (!currentLocale) {
-        currentLocale = localStorage.getItem("currentLocale") || 'en';
+        currentLocale = localStorage.getItem("currentLocale") || "en";
       }
 
-      this.voiceList = this.synth.getVoices();
-      this.voiceList = [...this.voiceList.filter(v => v.lang.split('-')[0] === currentLocale)];
+      this.voiceList = this.speechSynthesis.getVoices();
+      this.voiceList = [
+        ...this.voiceList.filter((v) => v.lang.split("-")[0] === currentLocale),
+      ];
 
-      this.synth.onvoiceschanged = () => {
-        this.voiceList = this.synth.getVoices();       
-        this.voiceList = [...this.voiceList.filter(v => v.lang.split('-')[0] === currentLocale)];
-        this.selectedVoice = this.voiceList.length > JSON.parse(localStorage.getItem("selectedVoice")) + 1
-          ? JSON.parse(localStorage.getItem("selectedVoice")) : 0;
-        this.selectedRate = JSON.parse(localStorage.getItem("selectedRate")) || 3;
-        this.settingsSaved = localStorage.getItem("settingsStatus");
+      this.speechSynthesis.onvoiceschanged = () => {
+        this.voiceList = this.speechSynthesis.getVoices();
+        this.voiceList = [
+          ...this.voiceList.filter(
+            (v) => v.lang.split("-")[0] === currentLocale
+          ),
+        ];
+        this.selectedVoice =
+          this.voiceList.length >
+          JSON.parse(localStorage.getItem("selectedVoice")) + 1
+            ? JSON.parse(localStorage.getItem("selectedVoice"))
+            : 0;
+        this.selectedRate =
+          JSON.parse(localStorage.getItem("selectedRate")) || 3;
+        this.areSettingsSaved = localStorage.getItem("settingsStatus");
       };
 
-      this.selectedVoice = this.voiceList.length > JSON.parse(localStorage.getItem("selectedVoice")) + 1
-        ? JSON.parse(localStorage.getItem("selectedVoice")) : 0;
+      this.selectedVoice =
+        this.voiceList.length >
+        JSON.parse(localStorage.getItem("selectedVoice")) + 1
+          ? JSON.parse(localStorage.getItem("selectedVoice"))
+          : 0;
       this.selectedRate = JSON.parse(localStorage.getItem("selectedRate")) || 3;
     },
     convertTextToSpeech(innerText) {
-      if (this.settingsSaved) {
+      if (this.areSettingsSaved) {
         this.textToSpeech.text = `${innerText}`;
         this.textToSpeech.voice = this.voiceList[this.selectedVoice];
-        let utterance = new SpeechSynthesisUtterance(this.textToSpeech.text);
-        utterance.voice = this.textToSpeech.voice;
-        utterance.rate = this.selectedRate;
-        this.synth.speak(utterance);
+        let speechSynthesisUtterance = new SpeechSynthesisUtterance(
+          this.textToSpeech.text
+        );
+        speechSynthesisUtterance.voice = this.textToSpeech.voice;
+        speechSynthesisUtterance.rate = this.selectedRate;
+        this.speechSynthesis.speak(speechSynthesisUtterance);
       }
     },
     stopTextToSpeechConversion() {
-      if (this.synth.speaking) {
-        this.synth.cancel();
+      if (this.speechSynthesis.speaking) {
+        this.speechSynthesis.cancel();
       }
     },
     saveSpeechSynthesisSettings() {
-      this.settingsSaved = true;
+      this.areSettingsSaved = true;
       localStorage.setItem("selectedVoice", JSON.stringify(this.selectedVoice));
       localStorage.setItem("selectedRate", JSON.stringify(this.selectedRate));
-      localStorage.setItem("settingsStatus", this.settingsSaved);
+      localStorage.setItem("settingsStatus", this.areSettingsSaved);
     },
     cancelSpeechSynthesisSettings() {
-      this.settingsSaved = false;
+      this.areSettingsSaved = false;
       localStorage.removeItem("selectedVoice");
       localStorage.removeItem("selectedRate");
-      localStorage.setItem("settingsStatus", this.settingsSaved);
+      localStorage.setItem("settingsStatus", this.areSettingsSaved);
     },
   },
 };

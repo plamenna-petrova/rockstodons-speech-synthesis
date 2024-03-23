@@ -454,6 +454,12 @@ footer a {
     }
 }
 
+@media screen and (min-width: 992px) {
+    .right-elements-container {
+        flex-direction: row !important;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .new-releases-container {
         padding: 0 10% !important;
@@ -461,8 +467,16 @@ footer a {
 }
 
 @media screen and (min-width: 992px) {
+    body {
+        position: initial !important; 
+    }
+
     .new-releases-container {
         padding: 0 5% !important;
+    }
+    
+    .navbar.navbar-expand-lg {
+        height: initial !important;
     }
 }
 

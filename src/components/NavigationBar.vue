@@ -72,7 +72,7 @@
           </li>
         </ul>
       </div>
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center right-elements-container">
         <div class="right-element search-bar">
           <a
             class="text-reset me-3"
