@@ -18,17 +18,16 @@ this.voiceList = [
 ];
 
 this.speechSynthesis.onvoiceschanged = () => {
-  this.voiceList = this.speechSynthesis.getVoices();
-  this.voiceList = [
-      ...this.voiceList.filter(
-         (v) => v.lang.split("-")[0] === currentLocale
-      ),
-  ];
-  this.selectedVoice =
-      this.voiceList.length >
-          JSON.parse(localStorage.getItem("selectedVoice")) + 1
-            ? JSON.parse(localStorage.getItem("selectedVoice"))
-            : 0;
+  ...
+  if (localStorage.getItem("selectedVoice")) {
+    this.selectedVoice =
+        this.voiceList.length >
+            JSON.parse(localStorage.getItem("selectedVoice")) + 1
+              ? JSON.parse(localStorage.getItem("selectedVoice"))
+              : 0;
+  } else {
+      this.selectedVoice = 0;
+  }
   ...
 };
  
