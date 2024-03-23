@@ -2,7 +2,7 @@
 
 ![Navigation Bar and Masthead Header](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(2653).png?raw=true)
 
-![Grid](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(2654).png?raw=true)
+![Grid](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(2656).png?raw=true)
 
 ![Footer with Speech Synthesis Menu](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(2655).png?raw=true)
 
