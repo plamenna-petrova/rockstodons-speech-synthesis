@@ -6,6 +6,10 @@
 
 ![Footer with Speech Synthesis Menu](https://github.com/plamenna-petrova/rockstodons-speech-synthesis/blob/main/src/assets/images/presentation/Screenshot%20(2655).png?raw=true)
 
+## Deployment
+
+You can view the project on: [rockstodons-speech-synthesis.vercel.app](https://rockstodons-speech-synthesis.vercel.app/)
+
 ## Set up Speech Synthesis 
 
 ```javascript
@@ -79,7 +83,7 @@ stopTextToSpeechConversion() {
   }
 }
 ```
-### Custom Events
+## Custom Events
 
 - Events
 
@@ -111,7 +115,7 @@ stopTextToSpeechConversion() {
   eventBus.$on("stop-speaking", this.stopTextToSpeechConversion); 
 ```
 
-### Translations
+## Translations
 ```javascript
 const messages = {
   en: enTranslations,
@@ -125,4 +129,3 @@ const i18n = new VueI18n({
 i18n.locale = localStorage.getItem("currentLocale") || 'en';
 ```
 ## Settings can be saved to and retrieved from local storage
-
