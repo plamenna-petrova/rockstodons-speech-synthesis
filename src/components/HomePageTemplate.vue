@@ -326,11 +326,11 @@ export default {
       };
 
       if (localStorage.getItem("selectedVoice")) {
-              this.selectedVoice =
-        this.voiceList.length >
-        JSON.parse(localStorage.getItem("selectedVoice")) + 1
-          ? JSON.parse(localStorage.getItem("selectedVoice"))
-          : 0;
+        this.selectedVoice =
+          this.voiceList.length >
+          JSON.parse(localStorage.getItem("selectedVoice")) + 1
+            ? JSON.parse(localStorage.getItem("selectedVoice"))
+            : 0;
       } else {
         this.selectedVoice = 0;
       }
