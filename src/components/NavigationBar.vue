@@ -16,7 +16,7 @@
         <span class="toggler-icon middle-bar"></span>
         <span class="toggler-icon bottom-bar"></span>
       </button>
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0 mr-0" href="#">
         <img
           src="../assets/images/rockstodons-logo-removebg-preview.png"
           height="15"
