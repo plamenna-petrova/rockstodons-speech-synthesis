@@ -112,7 +112,7 @@ stopTextToSpeechConversion() {
   eventBus.$on("stop-speaking", this.stopTextToSpeechConversion); 
 ```
 
-- Translations
+### Translations
 ```javascript
 const messages = {
   en: enTranslations,
