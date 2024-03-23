@@ -257,6 +257,7 @@ export default {
           navbarToggler.style.left = 50 + "%";
 
           navbarBrand.style.marginLeft = 18 + "px";
+          navbarBrand.style.marginRight = 0 + "px";
 
           navbarExpandLgContainerFluid.classList.add("justify-content-center");
           navbarSupportedContent.style.display = "block";

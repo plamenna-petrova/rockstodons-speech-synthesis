@@ -478,6 +478,10 @@ footer a {
     .navbar.navbar-expand-lg {
         height: initial !important;
     }
+
+    .navbar-brand {
+        margin-left: 0px !important;
+    }
 }
 
 @media screen and (max-width: 767px) {
