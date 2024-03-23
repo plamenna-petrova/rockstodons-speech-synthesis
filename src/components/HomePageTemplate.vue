@@ -309,21 +309,32 @@ export default {
             (v) => v.lang.split("-")[0] === currentLocale
           ),
         ];
-        this.selectedVoice =
-          this.voiceList.length >
-          JSON.parse(localStorage.getItem("selectedVoice")) + 1
-            ? JSON.parse(localStorage.getItem("selectedVoice"))
-            : 0;
+
+        if (localStorage.getItem("selectedVoice")) {
+          this.selectedVoice =
+            this.voiceList.length >
+            JSON.parse(localStorage.getItem("selectedVoice")) + 1
+              ? JSON.parse(localStorage.getItem("selectedVoice"))
+              : 0;
+        } else {
+          this.selectedVoice = 0;
+        }
+
         this.selectedRate =
           JSON.parse(localStorage.getItem("selectedRate")) || 3;
-        this.areSettingsSaved = localStorage.getItem("settingsStatus");
+        this.areSettingsSaved = localStorage.getItem("settingsStatus") || false;
       };
 
-      this.selectedVoice =
+      if (localStorage.getItem("selectedVoice")) {
+              this.selectedVoice =
         this.voiceList.length >
         JSON.parse(localStorage.getItem("selectedVoice")) + 1
           ? JSON.parse(localStorage.getItem("selectedVoice"))
           : 0;
+      } else {
+        this.selectedVoice = 0;
+      }
+
       this.selectedRate = JSON.parse(localStorage.getItem("selectedRate")) || 3;
     },
     convertTextToSpeech(innerText) {
